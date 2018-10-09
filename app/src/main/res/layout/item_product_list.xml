@@ -33,7 +33,6 @@
             android:layout_height="wrap_content"
             android:padding="30dp"
             android:text="price"
-
             />
     </LinearLayout>
 
