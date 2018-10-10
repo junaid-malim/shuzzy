@@ -1,6 +1,8 @@
 package com.shuzzy.junaid.shuzzy;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,9 +10,21 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class Product_Adapter extends BaseAdapter {
+public class Product_Adapter extends RecyclerView.ViewHolder {
+
 
     Context context;
+
+    View mView;
+
+    public Product_Adapter(@NonNull View itemView) {
+        super(itemView);
+        mView=itemView;
+    }
+
+
+/*
+
     List<product> productList;
 
 
@@ -47,4 +61,5 @@ public class Product_Adapter extends BaseAdapter {
 
         return v;
     }
+    */
 }
