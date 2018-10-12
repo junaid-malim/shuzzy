@@ -1,43 +1,43 @@
 package com.shuzzy.junaid.shuzzy;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView listView;
-    Product_Adapter adapter;
-    List<product> productList;
-    DatabaseReference mDatabase;
+    RecyclerView recyclerView;
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference reference = firebaseDatabase.getReference("shoes");
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDatabase=FirebaseDatabase.getInstance().getReference().child("products");
-
-        listView=findViewById(R.id.listview);
-
-
+        recyclerView = findViewById(R.id.prodList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
 
     }
 
-    protected void onStart(){
+    public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<>
+        FirebaseRecyclerAdapter<model, ViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<model, ViewHolder>(model.class,R.layout.recycler_item,ViewHolder.class,reference) {
+            @Override
+            protected void populateViewHolder(ViewHolder viewHolder, model model, int position) {
+                viewHolder.setDetails(MainActivity.this,model.getName(),model.getPrice(),model.getUrl());
+            }
+        };
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 }
