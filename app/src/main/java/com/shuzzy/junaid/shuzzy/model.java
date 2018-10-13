@@ -1,11 +1,11 @@
 package com.shuzzy.junaid.shuzzy;
 
 public class model {
-    String url,name,price;
+    String url,brand,price;
 
-    public model(String url, String name, String price) {
+    public model(String url, String brand, String price) {
         this.url = url;
-        this.name = name;
+        this.brand = brand;
         this.price = price;
     }
     public model(){
@@ -21,11 +21,11 @@ public class model {
     }
 
     public String getName() {
-        return name;
+        return brand;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.brand = name;
     }
 
     public String getPrice() {
