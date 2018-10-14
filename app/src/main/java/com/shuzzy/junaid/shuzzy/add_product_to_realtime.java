@@ -36,13 +36,10 @@ public class add_product_to_realtime {
 
         db = FirebaseDatabase.getInstance().getReference("Shoes");
 
-
-
         db.child(brand+datea).child("brand").setValue(brand);
         db.child(brand+datea).child("color").setValue(color);
-        db.child(brand+datea).child("price").setValue(price+"rs.");
+        db.child(brand+datea).child("price").setValue(price);
         db.child(brand+datea).child("url").setValue(url);
-
 
     }
 

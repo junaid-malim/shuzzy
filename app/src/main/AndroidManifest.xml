@@ -12,18 +12,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".signupActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
-        <activity android:name=".signupActivity" />
-        <activity android:name=".signinActivity" />
-        <activity android:name=".SellerActivity">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".signinActivity" />
+        <activity android:name=".SellerActivity" />
         <activity android:name=".cartActivity" />
+        <activity android:name=".wishlistActivity"></activity>
     </application>
 
 </manifest>

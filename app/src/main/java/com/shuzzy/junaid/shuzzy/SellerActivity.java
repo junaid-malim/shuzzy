@@ -54,7 +54,7 @@ public class SellerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller);
-        storageReference=FirebaseStorage.getInstance().getReference("prods");
+        storageReference=FirebaseStorage.getInstance().getReference("products");
         databaseReference=FirebaseDatabase.getInstance().getReference("Shoes");
 
         progressBar=findViewById(R.id.progressBar);
