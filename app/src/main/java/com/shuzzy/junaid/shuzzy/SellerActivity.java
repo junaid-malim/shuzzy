@@ -68,6 +68,11 @@ public class SellerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
+                if(getBrand.getText().toString().isEmpty()||getColor1.getText().toString().isEmpty()||getPrice.getText().toString().isEmpty())
+                {
+                    Toast.makeText(SellerActivity.this,"don't leave details empty",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 uploadImg();
 
             }
@@ -82,15 +87,10 @@ public class SellerActivity extends AppCompatActivity {
 
     }
 
-    private String getfileextention(Uri uri){
-        ContentResolver cR=getContentResolver();
-        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(cR.getType(uri)) ;
-    }
 
     private void uploadImg() {
         if(picUri!=null){
-            final StorageReference fileref=storageReference.child(System.currentTimeMillis()+"."+getfileextention(picUri));
+            final StorageReference fileref=storageReference.child(System.currentTimeMillis()+".jpg");
             fileref.putFile(picUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -103,17 +103,10 @@ public class SellerActivity extends AppCompatActivity {
                                 }
                             },5000);
                             Toast.makeText(SellerActivity.this,"uploaded",Toast.LENGTH_LONG).show();
-                            Upload_image upload_image=new Upload_image(SellerActivity.this,getBrand.getText().toString().trim(),
-                                    fileref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Uri> task) {
-                                            Uri downloadurl=task.getResult();
-                                            URLref=downloadurl.toString();
-                                        }
-                                    }).toString());
-                            String uploadId=databaseReference.push().getKey();
-                            //Toast.makeText(SellerActivity.this,"its:- "+URLref,Toast.LENGTH_LONG).show();
-                            databaseReference.child(uploadId).setValue(upload_image );
+                            new Upload_image(SellerActivity.this,getBrand.getText().toString().trim(),
+                                    taskSnapshot.getDownloadUrl().toString());
+                            Toast.makeText(SellerActivity.this,"its:- "+taskSnapshot.getDownloadUrl().toString(),Toast.LENGTH_LONG).show();
+                            new add_product_to_realtime(SellerActivity.this,getBrand.getText().toString(),getColor1.getText().toString(),getPrice.getText().toString(),taskSnapshot.getDownloadUrl().toString());
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {

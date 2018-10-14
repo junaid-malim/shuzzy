@@ -15,7 +15,6 @@ public class Upload_image {
         if (name.trim().equals("")) {
             name = "No Name";
         }
-        Toast.makeText(context,"its "+mImageURL , Toast.LENGTH_SHORT).show();
         mName = name;
         mImageURL = imageUrl;
     }
