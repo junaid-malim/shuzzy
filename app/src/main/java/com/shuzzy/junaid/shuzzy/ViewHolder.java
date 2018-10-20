@@ -17,14 +17,21 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
         mView=itemView;
 
+        itemView.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                mClickListner.onItemClick (view,getAdapterPosition ());
+            }
+        });
+
     }
-    public void setDetails(MainActivity context, String name, String price, String image) {
+    public void setDetails(MainActivity context, String name,String color, String price, String image) {
 
         TextView tvname=mView.findViewById(R.id.tvname);
         TextView tvprice=mView.findViewById(R.id.tvprice);
         ImageView prodimg=mView.findViewById(R.id.prodimg);
 
-        tvname.setText(name);
+        tvname.setText(name+" "+color);
         tvprice.setText(price);
         Picasso p=new Picasso.Builder(context).memoryCache(new LruCache(240000)).build();
         p.load(image).resize(1080,1080).centerInside().placeholder(R.drawable.progress_animation).error(R.drawable.error_icon).into(prodimg);
@@ -32,13 +39,34 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setDetails(cartActivity context, String name, String price, String image) {
+    public interface ClickListner{
+        void onItemClick(View view,int position);
+    }
+    ViewHolder.ClickListner mClickListner;
+    public void setOnClickListner(ViewHolder.ClickListner clickListner){
+        mClickListner=clickListner;
+    }
+
+    public void setDetails(cartActivity context, String name,String color, String price, String image) {
 
         TextView tvname=mView.findViewById(R.id.tvname);
         TextView tvprice=mView.findViewById(R.id.tvprice);
         ImageView prodimg=mView.findViewById(R.id.prodimg);
 
-        tvname.setText(name);
+        tvname.setText(name+" "+color);
+        tvprice.setText(price);
+        Picasso p=new Picasso.Builder(context).memoryCache(new LruCache(240000)).build();
+        p.load(image).resize(1080,1080).centerInside().placeholder(R.drawable.progress_animation).error(R.drawable.error_icon).into(prodimg);
+
+
+    }
+    public void setDetails(wishlistActivity context, String name,String color, String price, String image) {
+
+        TextView tvname=mView.findViewById(R.id.tvname);
+        TextView tvprice=mView.findViewById(R.id.tvprice);
+        ImageView prodimg=mView.findViewById(R.id.prodimg);
+
+        tvname.setText(name+" "+color);
         tvprice.setText(price);
         Picasso p=new Picasso.Builder(context).memoryCache(new LruCache(240000)).build();
         p.load(image).resize(1080,1080).centerInside().placeholder(R.drawable.progress_animation).error(R.drawable.error_icon).into(prodimg);

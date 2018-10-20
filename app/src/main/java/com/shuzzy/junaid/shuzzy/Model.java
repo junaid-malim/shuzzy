@@ -1,14 +1,15 @@
 package com.shuzzy.junaid.shuzzy;
 
-public class model {
-    String url,brand,price;
+public class Model {
+    String url,brand,price,color;
 
-    public model(String url, String brand, String price) {
+    public Model(String url, String brand, String price,String color) {
         this.url = url;
         this.brand = brand;
         this.price = price;
+        this.color=color;
     }
-    public model(){
+    public Model(){
 
     }
 
@@ -34,5 +35,13 @@ public class model {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
