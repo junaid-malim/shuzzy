@@ -46,12 +46,14 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/decre"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:textSize="29dp"
                 android:text="-"/>
 
             <TextView
+                android:id="@+id/countr"
                 android:layout_width="67dp"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -59,6 +61,7 @@
                 android:textAlignment="center"/>
 
             <Button
+                android:id="@+id/incre"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:textSize="29dp"

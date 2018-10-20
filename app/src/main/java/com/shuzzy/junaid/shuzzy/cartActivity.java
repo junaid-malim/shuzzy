@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class cartActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = firebaseDatabase.getReference("cart").child(sharedPreferences.getString("uid","null"));
+    int[] pricearr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class cartActivity extends AppCompatActivity {
     }
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<Model, ViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(Model.class,R.layout.recycler_item,ViewHolder.class,reference) {
+        FirebaseRecyclerAdapter<Model, ViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(Model.class,R.layout.cart_item,ViewHolder.class,reference) {
             @Override
             protected void populateViewHolder(ViewHolder viewHolder, Model model, int position) {
                 viewHolder.setDetails(cartActivity.this,model.getName(),model.getColor (),model.getPrice(),model.getUrl());

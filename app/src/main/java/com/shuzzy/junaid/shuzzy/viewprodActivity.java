@@ -50,7 +50,7 @@ import android.widget.TextView;
             @Override
             public void onClick(View view) {
 
-
+                new addtowishlist (viewprodActivity.this,refrenc);
 
             }
         });
